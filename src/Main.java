@@ -11,7 +11,7 @@ public class Main {
     public static void main(String[] args) {
         try {
             
-        	var operacaoMatematica = Acao.valueOf(JOptionPane.showInputDialog("Escreva a Operação: SOMAR, SUBTRAIR"));
+        	var operacaoMatematica = Acao.valueOf(JOptionPane.showInputDialog("Escreva a operação: SOMAR, SUBTRAIR, MULTIPLICAR ou DIVIDIR").toUpperCase());
             
             var numerosDigitadosPeloUsuario = JOptionPane.showInputDialog("Informe Números Inteiros: (Exemplo: 1,2,11)");
             
@@ -41,9 +41,13 @@ public class Main {
     	break;
     	
     	case MULTIPLICAR:
+    		Optional<Integer> resultadoDaMultiplicacao = numerosDigitadosPeloUsuario.stream().reduce((primeiroNumero, segundoNumero) -> primeiroNumero * segundoNumero);
+            resultadoDaMultiplicacao.ifPresent(resultadoInteiro -> JOptionPane.showMessageDialog(null, "Resultado da Multiplicação: " + resultadoInteiro));
     	break;
     	
     	case DIVIDIR:
+    		Optional<Integer> resultadoDaDivisao = numerosDigitadosPeloUsuario.stream().reduce((primeiroNumero, segundoNumero) -> primeiroNumero / segundoNumero);
+            resultadoDaDivisao.ifPresent(resultadoInteiro -> JOptionPane.showMessageDialog(null, "Resultado da Divisão: " + resultadoInteiro));
     	break;
     	
     	default:
