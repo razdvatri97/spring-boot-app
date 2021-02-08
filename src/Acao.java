@@ -1,5 +1,5 @@
 package src;
 
 public enum Acao {
-    SOMAR, SUBTRAIR
+    SOMAR, SUBTRAIR, MULTIPLICAR, DIVIDIR
 }
