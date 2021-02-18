@@ -13,9 +13,9 @@ public class Main {
             
         	var operacaoMatematica = Acao.valueOf(JOptionPane.showInputDialog("Escreva a operação: SOMAR, SUBTRAIR, MULTIPLICAR ou DIVIDIR").toUpperCase());
             
-            var numerosDigitadosPeloUsuario = JOptionPane.showInputDialog("Informe Números Inteiros: (Exemplo: 1,2,11)");
+            var numerosDigitadosPeloUsuario = JOptionPane.showInputDialog("Informe números INTEIROS separados por espaço: (Exemplo: 1 2 11)");
             
-            var numerosConvertidosParaInteger = Arrays.stream(numerosDigitadosPeloUsuario.split(",")).map(value -> Integer.valueOf(value))
+            var numerosConvertidosParaInteger = Arrays.stream(numerosDigitadosPeloUsuario.split(" ")).map(value -> Integer.valueOf(value))
                     .collect(Collectors.toList());
 
             calcular(numerosConvertidosParaInteger, operacaoMatematica);
@@ -51,7 +51,7 @@ public class Main {
     	break;
     	
     	default:
-    		 System.out.println("Operador inválida");
+    		 System.out.println("Numero incorreto");
     	}
     }
 }
