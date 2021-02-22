@@ -16,30 +16,29 @@ import spring.boot.calculadora.model.OperacaoMatematica;
 import spring.boot.calculadora.repository.HistoricoRepository;
 
 @RestController
-@RequestMapping("/somar")
-public class Somar {
+@RequestMapping("/multiplicar")
+public class Multiplicar {
 	
 	@Autowired
 	private HistoricoRepository historicoRepository;
 	
 	@GetMapping
-	public Optional<Integer> calculaSoma(String n) {
+	public Optional<Integer> calculaMultiplicacao(String n) {
 		
 		List<Integer> numerosConvertidos = Arrays.stream(n.split(",")).map(value -> Integer.valueOf(value))
 				.collect(Collectors.toList());
 		
-		Optional<Integer> resultadoDaSoma = numerosConvertidos.stream().reduce((primeiroNumero, segundoNumero) -> primeiroNumero + segundoNumero);
+		Optional<Integer> resultadoDaMultiplicacao = numerosConvertidos.stream().reduce((primeiroNumero, segundoNumero) -> primeiroNumero * segundoNumero);
 		
-		return resultadoDaSoma;
+		return resultadoDaMultiplicacao;
 	}
 	
-	@RequestMapping("/historicoSoma") 
+	@RequestMapping("/historicoMultiplicacao") 
 	@GetMapping
-	public String historicoSoma(OperacaoMatematica operacao) {
+	public String historicoMultiplicacao(OperacaoMatematica operacao) {
 			List<Historico> historico = historicoRepository.findByOperacao(operacao);
 			return HistoricoDto.converter(historico);		
 		
 	}
-
 
 }

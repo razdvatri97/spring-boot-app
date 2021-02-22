@@ -23,6 +23,4 @@ public class NumeroDto {
 		return numeros.stream().map(NumeroDto:: new).collect(Collectors.toList()); 
 	}
 	
-	
-	
 }
