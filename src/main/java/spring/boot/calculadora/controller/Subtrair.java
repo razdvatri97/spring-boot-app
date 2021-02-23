@@ -20,11 +20,12 @@ public class Subtrair {
 
 	@Autowired
 	private HistoricoRepository historicoRepository;
-
+	NumeroDto numeros = new NumeroDto();
+	
 	@GetMapping
 	public Optional<Integer> subtrair(String n) {
 
-		NumeroDto numeros = new NumeroDto();
+		
 		List<Integer> numerosConvertidos = numeros.converterStringParaInteger(n);
 
 		return numeros.calcularSubtracao(numerosConvertidos);

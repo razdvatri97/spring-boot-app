@@ -20,15 +20,13 @@ public class Somar {
 
 	@Autowired
 	private HistoricoRepository historicoRepository;
+	NumeroDto numeroDto = new NumeroDto();
 
 	@GetMapping
 	public Optional<Integer> somar(String n) {
-
-		NumeroDto numeros = new NumeroDto();
-		List<Integer> numerosConvertidos = numeros.converterStringParaInteger(n);
-
-		return numeros.calcularSoma(numerosConvertidos);
-
+		
+		List<Integer> numerosConvertidos = numeroDto.converterStringParaInteger(n);
+		return numeroDto.calcularSoma(numerosConvertidos);
 	}
 
 	@GetMapping

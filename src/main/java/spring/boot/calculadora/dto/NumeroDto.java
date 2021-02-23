@@ -10,21 +10,22 @@ import spring.boot.calculadora.model.Numero;
 public class NumeroDto {
 
 	private Long id;
-	private int valor;
+	private Optional<Integer> valor;
+	HistoricoDto historicoDto = new HistoricoDto();
 
 	public NumeroDto() {
 
 	}
 
-	public NumeroDto(Numero numero) {
-		this.valor = numero.getValor();
-	}
+	//public NumeroDto(Numero numero) {
+	//	this.valor = numero.getValor();
+	//}
 
 	public Long getId() {
 		return id;
 	}
 
-	public int getValor() {
+	public Optional<Integer> getValor() {
 		return valor;
 	}
 
@@ -33,7 +34,14 @@ public class NumeroDto {
 	}
 
 	public Optional<Integer> calcularSoma(List<Integer> numerosConvertidos) {
-		return numerosConvertidos.stream().reduce((primeiroNumero, segundoNumero) -> primeiroNumero + segundoNumero);
+
+		Optional<Integer> resultadoDaSoma = numerosConvertidos.stream()
+				.reduce((primeiroNumero, segundoNumero) -> primeiroNumero + segundoNumero);
+
+		//Numero numero = new Numero(resultadoDaSoma);
+		//historicoDto.salvar(numero);
+
+		return resultadoDaSoma;
 	}
 
 	public Optional<Integer> calcularSubtracao(List<Integer> numerosConvertidos) {
@@ -49,8 +57,7 @@ public class NumeroDto {
 		return numerosConvertidos.stream().reduce((primeiroNumero, segundoNumero) -> primeiroNumero / segundoNumero);
 	}
 
-	public static List<NumeroDto> converterParaDto(List<Numero> numeros) {
-		return numeros.stream().map(NumeroDto::new).collect(Collectors.toList());
-	}
-
+	//public static List<NumeroDto> converterParaDto(List<Numero> numeros) {
+	//	return numeros.stream().map(NumeroDto::new).collect(Collectors.toList());
+	//}
 }
